@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Sign up account
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="{{ field.auto_id }}">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                            </div>   
+                        {% endfor %}
+
+                        <!-- 
+                            ใช้ div.independent-button-wrapper ครอบ button เพื่อสามารถขยับ button ได้อิสระ
+                            ถ้าไม่มี div.independent-button-wrapper ครอบ mt-3 ของ button จะไม่ทำงาน มันจะทำงานตาม space-y-xx ที่ถูกกำหนดไว้ที่ form แทน
+                        -->
+                        <div class="independent-button-wrapper">
+                            <button type="submit" class="btn-submit mt-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
