@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from .views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("apps.accounts.urls")),
     path("home/", TemplateView.as_view(template_name="home.html"), name="home"),
-    path("accounts/", include('django.contrib.auth.urls')),
 ]
